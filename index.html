@@ -6,40 +6,69 @@
 <meta name="theme-color" content="#e4f4e9">
 <title>Ngaji Kids</title>
 <style>
-:root {
-  --green:#347b62; --mint:#e4f4e9; --cream:#fff9ed;
-  --pink:#fbe8ed; --text:#294b40; --white:#fff;
-}
-* {box-sizing:border-box}
-body {
-  margin:0; background:var(--cream); color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-}
-header {
-  background:var(--mint); padding:25px 18px 22px;
-  border-radius:0 0 28px 28px;
-}
-.wrap {max-width:850px;margin:auto;padding:0 15px}
-.brand {font-size:26px;font-weight:850;color:var(--green)}
-header p {line-height:1.6;margin-bottom:0}
-.hero {
-  margin-top:18px;background:white;border-radius:22px;
-  padding:20px;box-shadow:0 4px 18px #254e3510;
-}
-.hero h2 {margin:0 0 8px}
-nav {display:flex;gap:9px;margin:20px 0;flex-wrap:wrap}
-button,select {
-  border:0;border-radius:13px;padding:12px 15px;
-  font-size:15px;cursor:pointer;
-}
-nav button {background:#e9eee7;color:var(--text);font-weight:700}
-nav button.active,.primary {background:var(--green);color:white}
-.panel {
-  background:white;padding:18px;border-radius:20px;
-  margin-bottom:18px;box-shadow:0 4px 18px #254e3508;
-}
-h2,h3 {line-height:1.4}
-select {background:var(--mint);color:var(--text);width:100%;margin:8px 0 12px}
-.actions {display:flex;gap:8px;flex-wrap:wrap}
-.actions button {flex:1;min-width:125px}
-.secondary {background:var(--pink);color:#8
+:root{--green:#347b62;--mint:#e4f4e9;--cream:#fff9ed;--pink:#fbe8ed;--text:#294b40}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+header{background:var(--mint);padding:25px 18px 22px;border-radius:0 0 28px 28px}
+.wrap{max-width:850px;margin:auto;padding:0 15px}
+.brand{font-size:26px;font-weight:850;color:var(--green)}
+header p{line-height:1.6;margin-bottom:0}
+.hero{margin-top:18px;background:white;border-radius:22px;padding:20px;box-shadow:0 4px 18px #254e3510}
+.hero h2{margin:0 0 8px}
+nav{display:flex;gap:9px;margin:20px 0;flex-wrap:wrap}
+button,select{border:0;border-radius:13px;padding:12px 15px;font-size:15px;cursor:pointer}
+nav button{background:#e9eee7;color:var(--text);font-weight:700}
+nav button.active,.primary{background:var(--green);color:white}
+.panel{background:white;padding:18px;border-radius:20px;margin-bottom:18px;box-shadow:0 4px 18px #254e3508}
+h2,h3{line-height:1.4}
+select{background:var(--mint);color:var(--text);width:100%;margin:8px 0 12px}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+.actions button{flex:1;min-width:125px}
+.secondary{background:var(--pink);color:#874d62}
+.ayah{border:1px solid #e6eee6;border-radius:17px;padding:17px;margin-top:14px}
+.ayah-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.number{background:var(--mint);color:var(--green);border-radius:50%;width:34px;height:34px;display:grid;place-items:center;font-weight:bold;flex-shrink:0}
+.arabic{font-family:"Times New Roman",serif;font-size:29px;line-height:2;text-align:right;margin:16px 0;direction:rtl}
+.latin{color:#55836d;font-style:italic;line-height:1.7}
+.meaning{line-height:1.8}
+.small{font-size:13px;color:#74877d;line-height:1.6}
+.dua{background:#fff4e2;border-radius:16px;padding:16px;margin-top:12px}
+.hidden{display:none}
+footer{text-align:center;padding:24px;font-size:13px;color:#71877c}
+button:focus-visible,select:focus-visible{outline:3px solid #79bda2}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<div class="brand">🌙 Ngaji Kids</div>
+<p>Belajar Al-Qur'an dengan gembira, satu ayat setiap hari! 🌷</p>
+<div class="hero"><h2>Assalamu'alaikum, teman kecil! 👋</h2><p>Yuk, belajar membaca Al-Qur'an, mendengarkan murottal, dan menghafal doa harian.</p></div>
+</div></header>
+<main class="wrap">
+<nav><button class="active" id="tabSurat" onclick="showTab('surat')">📖 Belajar Surat</button><button id="tabDoa" onclick="showTab('doa')">🤲 Doa Harian</button></nav>
+<section id="surat"><div class="panel">
+<h2>📚 Surat Pendek Juz 30</h2><p>Pilih surat, lalu baca dan dengarkan ayatnya.</p>
+<label for="surahSelect">Pilih surat:</label><select id="surahSelect"></select>
+<div class="actions"><button class="primary" onclick="playSurah()">▶ Dengarkan satu surat</button><button class="secondary" onclick="stopAudio()">■ Berhenti</button></div>
+<p class="small" id="status" aria-live="polite">Memuat daftar surat...</p></div><div id="verses"></div></section>
+<section id="doa" class="hidden"><div class="panel"><h2>🤲 Doa Harian Anak</h2><p>Yuk, belajar doa dan membaca artinya bersama keluarga.</p>
+<div class="dua"><h3>1. Doa sebelum makan</h3><div class="arabic">بِسْمِ اللَّهِ</div><p class="latin">Bismillah.</p><p class="meaning"><b>Artinya:</b> Dengan nama Allah.</p></div>
+<div class="dua"><h3>2. Doa sesudah makan</h3><div class="arabic">الْحَمْدُ لِلَّهِ</div><p class="latin">Alhamdulillah.</p><p class="meaning"><b>Artinya:</b> Segala puji bagi Allah.</p></div>
+<div class="dua"><h3>3. Doa sebelum tidur</h3><div class="arabic">بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا</div><p class="latin">Bismika Allahumma amuutu wa ahyaa.</p><p class="meaning"><b>Artinya:</b> Dengan nama-Mu, ya Allah, aku mati dan aku hidup.</p><p class="small">HR. al-Bukhari.</p></div>
+<div class="dua"><h3>4. Doa bangun tidur</h3><div class="arabic">الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ</div><p class="latin">Alhamdu lillahil-ladzi ahyaanaa ba'da maa amaatanaa wa ilaihin-nusyuur.</p><p class="meaning"><b>Artinya:</b> Segala puji bagi Allah yang menghidupkan kami setelah mematikan kami, dan kepada-Nya kami dibangkitkan.</p><p class="small">HR. al-Bukhari.</p></div>
+<p class="small">Pelajari pelafalan dan makna doa bersama orang tua atau guru ngaji.</p></div></section>
+</main><footer>💚 Ngaji Kids · Belajar dengan gembira</footer>
+<script>
+const select=document.getElementById('surahSelect'),versesBox=document.getElementById('verses'),statusBox=document.getElementById('status');
+let currentAudio=null,playToken=0,currentAyahs=[];
+function showTab(tab){document.getElementById('surat').classList.toggle('hidden',tab!=='surat');document.getElementById('doa').classList.toggle('hidden',tab!=='doa');document.getElementById('tabSurat').classList.toggle('active',tab==='surat');document.getElementById('tabDoa').classList.toggle('active',tab==='doa');if(tab==='doa')stopAudio()}
+function stopAudio(){playToken++;if(currentAudio){currentAudio.pause();currentAudio.onended=null;currentAudio.onerror=null;currentAudio=null}statusBox.textContent='Audio dihentikan.'}
+async function loadSurahList(){try{const r=await fetch('https://api.alquran.cloud/v1/surah');if(!r.ok)throw Error();const d=await r.json();select.innerHTML='';d.data.filter(s=>s.number>=78&&s.number<=114).forEach(s=>{const o=document.createElement('option');o.value=s.number;o.textContent=`${s.number}. ${s.englishName} — ${s.name}`;select.appendChild(o)});select.value='112';await loadSurah()}catch(e){statusBox.textContent='Daftar surat gagal dimuat. Periksa internet lalu muat ulang halaman.'}}
+async function loadSurah(){stopAudio();versesBox.innerHTML='';statusBox.textContent='Memuat ayat, Latin, dan terjemahan...';try{const n=select.value;const r=await fetch(`https://api.alquran.cloud/v1/surah/${n}/editions/quran-uthmani,en.transliteration,id.indonesian`);if(!r.ok)throw Error();const result=await r.json();if(!result.data||result.data.length<3)throw Error();const arab=result.data[0].ayahs,latin=result.data[1].ayahs,indo=result.data[2].ayahs;currentAyahs=arab.map((a,i)=>({number:a.number,text:a.text,latin:latin[i]?.text||'Latin belum tersedia.',meaning:indo[i]?.text||'Terjemahan belum tersedia.',numberInSurah:a.numberInSurah}));const info=result.data[0];const heading=document.createElement('div');heading.className='panel';heading.innerHTML=`<h2>${esc(info.name)} · ${esc(info.englishName)}</h2><p>${info.numberOfAyahs} ayat</p><p class="small">Baca perlahan-lahan dan dengarkan contoh bacaannya.</p>`;versesBox.appendChild(heading);currentAyahs.forEach((a,i)=>{const card=document.createElement('article');card.className='ayah';card.innerHTML=`<div class="ayah-top"><span class="number">${a.numberInSurah}</span><button class="secondary">▶ Dengarkan ayat</button></div><div class="arabic" lang="ar">${esc(a.text)}</div><p class="latin">${esc(a.latin)}</p><p class="meaning"><b>Artinya:</b> ${esc(a.meaning)}</p>`;card.querySelector('button').addEventListener('click',()=>playAyah(i));versesBox.appendChild(card)});statusBox.textContent='Ayat berhasil dimuat. Pilih tombol audio untuk mendengarkan.'}catch(e){statusBox.textContent='Ayat gagal dimuat. Periksa koneksi internet dan coba lagi.'}}
+function esc(v){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function audioUrl(n){return `https://cdn.islamic.network/quran/audio/128/ar.alafasy/${n}.mp3`}
+function playAyah(i){stopAudio();const token=playToken,a=currentAyahs[i];if(!a)return;statusBox.textContent=`Memutar ayat ${a.numberInSurah}...`;currentAudio=new Audio(audioUrl(a.number));currentAudio.onended=()=>{if(token===playToken)statusBox.textContent='Selesai mendengarkan ayat.'};currentAudio.onerror=()=>{if(token===playToken)statusBox.textContent='Audio tidak dapat diputar. Periksa internet.'};currentAudio.play().catch(()=>{if(token===playToken)statusBox.textContent='Tekan tombol audio sekali lagi untuk mencoba.'})}
+async function playSurah(){if(!currentAyahs.length)return;stopAudio();const token=playToken;for(let i=0;i<currentAyahs.length;i++){if(token!==playToken)return;const a=currentAyahs[i];statusBox.textContent=`Memutar ayat ${a.numberInSurah} dari ${currentAyahs.length}...`;const ok=await new Promise(resolve=>{const audio=new Audio(audioUrl(a.number));currentAudio=audio;audio.onended=()=>resolve(true);audio.onerror=()=>resolve(false);audio.play().catch(()=>resolve(false))});if(token!==playToken)return;if(!ok){statusBox.textContent='Audio terhenti karena koneksi atau file audio bermasalah.';currentAudio=null;return}}currentAudio=null;statusBox.textContent='Alhamdulillah! Satu surat selesai diputar.'}
+select.addEventListener('change',loadSurah);loadSurahList();
+</script>
+</body></html>
